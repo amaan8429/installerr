@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Copy, Loader2, X } from "lucide-react";
+import { Copy, Loader2 } from "lucide-react";
 import { generateScript, getTools } from "@/server/actions";
 import { Tool, OperatingSystem } from "./types";
+import { useToast } from "@/hooks/use-toast";
 
 export default function DevToolsSelector() {
   const [tools, setTools] = useState<Tool[]>([]);
@@ -17,10 +18,7 @@ export default function DevToolsSelector() {
   const [isLoading, setIsLoading] = useState(false);
   const [detectedOS, setDetectedOS] = useState<OperatingSystem>("linux");
   const [selectedOS, setSelectedOS] = useState<OperatingSystem>("linux");
-  const [notification, setNotification] = useState<{
-    message: string;
-    type: "success" | "error";
-  } | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     async function fetchTools() {
@@ -29,10 +27,12 @@ export default function DevToolsSelector() {
         setTools(fetchedTools);
       } catch (error) {
         console.error("Failed to fetch tools:", error);
-        showNotification(
-          "Failed to fetch available tools. Please try again later.",
-          "error"
-        );
+        toast({
+          title: "Error",
+          description:
+            "Failed to fetch available tools. Please try again later.",
+          variant: "destructive",
+        });
       }
     }
     fetchTools();
@@ -44,12 +44,7 @@ export default function DevToolsSelector() {
     else if (userAgent.indexOf("linux") > -1) setDetectedOS("linux");
 
     setSelectedOS(detectedOS);
-  }, []);
-
-  const showNotification = (message: string, type: "success" | "error") => {
-    setNotification({ message, type });
-    setTimeout(() => setNotification(null), 5000); // Hide after 5 seconds
-  };
+  }, [toast]);
 
   const handleToolSelection = (toolId: string) => {
     setSelectedTools((prev) =>
@@ -66,10 +61,12 @@ export default function DevToolsSelector() {
       setGeneratedScript(script);
     } catch (error) {
       console.error("Failed to generate script:", error);
-      showNotification(
-        "Failed to generate the installation script. Please try again.",
-        "error"
-      );
+      toast({
+        title: "Error",
+        description:
+          "Failed to generate the installation script. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -77,29 +74,15 @@ export default function DevToolsSelector() {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generatedScript);
-    showNotification(
-      "The installation script has been copied to your clipboard.",
-      "success"
-    );
+    toast({
+      title: "Copied!",
+      description: "The installation script has been copied to your clipboard.",
+    });
   };
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
       <h1 className="text-2xl font-bold mb-4">Development Tools Installer</h1>
-      {notification && (
-        <div
-          className={`p-4 rounded-md ${
-            notification.type === "success"
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
-          } flex justify-between items-center`}
-        >
-          <p>{notification.message}</p>
-          <button onClick={() => setNotification(null)} className="text-sm">
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-      )}
       <div className="space-y-4">
         <h2 className="text-lg font-semibold">Select Operating System</h2>
         <RadioGroup
