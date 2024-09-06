@@ -10,7 +10,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const tweetText = encodeURIComponent(
-    "Check out Installer, an awesome tool for setting up your dev environment! 🚀"
+    "Check out Installerr, an awesome tool for setting up your dev environment! 🚀"
   );
   const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
 
@@ -18,7 +18,7 @@ export default function Header() {
     <>
       <Button variant="ghost" size="sm" asChild>
         <Link
-          href="https://github.com/amaan8429/installer"
+          href="https://github.com/amaan8429/installerr"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -50,7 +50,7 @@ export default function Header() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="font-bold text-xl">Installer</span>
+            <span className="font-bold text-xl">Installerr</span>
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4">
