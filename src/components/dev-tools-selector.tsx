@@ -190,12 +190,14 @@ export default function DevToolsSelector() {
         </p>
       </div>
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold">Select Tools</h2>
+        <h2 className="text-lg font-semibold">
+          Select stuff you want to install
+        </h2>
         <div className="relative">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
             type="text"
-            placeholder="Search tools..."
+            placeholder="Search..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-8"
@@ -231,16 +233,16 @@ export default function DevToolsSelector() {
         <Dialog>
           <DialogTrigger asChild>
             <Button variant="outline" className="w-full">
-              <Plus className="mr-2 h-4 w-4" /> Add Custom Tool
+              <Plus className="mr-2 h-4 w-4" /> Add Custom
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Add Custom Tool</DialogTitle>
+              <DialogTitle>Add Custom</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div>
-                <Label htmlFor="customToolName">Tool Name</Label>
+                <Label htmlFor="customToolName">Name</Label>
                 <Input
                   id="customToolName"
                   value={customToolName}
