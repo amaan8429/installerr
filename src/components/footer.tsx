@@ -19,7 +19,7 @@ export default function Footer() {
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
-              Your Name
+              Amaan
             </a>
             . Open source on{" "}
             <a
