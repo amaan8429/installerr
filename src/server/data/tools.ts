@@ -1,8 +1,6 @@
-"use server";
+import { Tool } from "@/types/types";
 
-import { Tool, OperatingSystem } from "../types/types";
-
-const tools: Tool[] = [
+export const tools: Tool[] = [
   {
     id: "node",
     name: "Node.js",
@@ -95,20 +93,3 @@ const tools: Tool[] = [
     },
   },
 ];
-
-export async function getTools(): Promise<Tool[]> {
-  return tools;
-}
-
-export async function generateScript(
-  selectedTools: string[],
-  os: OperatingSystem
-): Promise<string> {
-  const installCommands = selectedTools
-    .map(
-      (toolId) => tools.find((tool) => tool.id === toolId)?.installCommands[os]
-    )
-    .filter(Boolean);
-
-  return installCommands.join(" && \\\n");
-}
