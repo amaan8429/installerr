@@ -61,6 +61,7 @@ export function useDevTools() {
         id: `custom-${Date.now()}`,
         name,
         description: "Custom tool",
+        url: "",
         installCommands: {
           linux: command,
           macos: command,

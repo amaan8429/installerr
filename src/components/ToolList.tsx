@@ -7,7 +7,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
-import { Info } from "lucide-react";
+import { Info, ExternalLink } from "lucide-react";
 import { Tool } from "@/types/types";
 
 interface Props {
@@ -21,6 +21,14 @@ export default function ToolList({
   selectedTools,
   handleToolSelection,
 }: Props) {
+  const handleWebsiteClick = (url: string) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  if (!filteredTools || filteredTools.length === 0) {
+    return <div>No tools available.</div>;
+  }
+
   return (
     <div className="space-y-2 max-h-60 overflow-y-auto">
       <TooltipProvider>
@@ -41,7 +49,19 @@ export default function ToolList({
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>{tool.description}</p>
+                  <div className="space-y-2">
+                    <p>{tool.description}</p>
+                    {tool.url && (
+                      <Button
+                        variant="link"
+                        className="p-0 h-auto font-normal"
+                        onClick={() => handleWebsiteClick(tool.url)}
+                      >
+                        Visit official website
+                        <ExternalLink className="ml-1 h-3 w-3" />
+                      </Button>
+                    )}
+                  </div>
                 </TooltipContent>
               </Tooltip>
             </Label>

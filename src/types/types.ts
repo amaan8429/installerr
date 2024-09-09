@@ -6,5 +6,6 @@ export interface Tool {
   id: string;
   name: string;
   description: string;
+  url: string;
   installCommands: Record<OperatingSystem, string>;
 }
