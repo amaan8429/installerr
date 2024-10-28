@@ -124,8 +124,8 @@ function DevToolsSelector() {
                   Choose Your Operating System
                 </h2>
                 <p className="text-muted-foreground">
-                  Let's start by selecting your operating system to ensure you
-                  get the right installation commands.
+                  Let&apos;s start by selecting your operating system to ensure
+                  you get the right installation commands.
                 </p>
               </div>
 
@@ -216,8 +216,8 @@ function DevToolsSelector() {
                   Your Installation Script
                 </h2>
                 <p className="text-muted-foreground">
-                  Here's your customized installation script. Copy and run it in
-                  your terminal.
+                  Here&apos;s your customized installation script. Copy and run
+                  it in your terminal.
                 </p>
               </div>
 
