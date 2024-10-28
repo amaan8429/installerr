@@ -51,6 +51,7 @@ function DevToolsSelector() {
     filteredTools,
     selectedTools,
     generatedScript,
+    setGeneratedScript,
     isLoading,
     detectedOS,
     selectedOS,
@@ -69,6 +70,7 @@ function DevToolsSelector() {
 
   const prevPage = () => {
     setDirection(-1);
+    setGeneratedScript("");
     setCurrentPage((prev) => Math.max(prev - 1, 0));
   };
 

@@ -113,5 +113,6 @@ export function useDevTools() {
     handleAddCustomTool,
     handleGenerateScript,
     setSelectedOS,
+    setGeneratedScript,
   };
 }
